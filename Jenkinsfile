@@ -14,9 +14,7 @@ pipeline {
             steps{
                 sh 'npm install'
             }
-            steps{
-                sh 'cd app && npm install'
-            }
+           
         }
     }
 }
