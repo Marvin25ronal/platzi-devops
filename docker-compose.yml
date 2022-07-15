@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+
+  database:
+    container_name: "database"
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "123"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./db/loadData.sql:/docker-entrypoint-initdb.d/2.sql
+      - mysqldata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  backend:
+    container_name: backend
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      database:
+        condition: service_healthy
+
+  app:
+    container_name: "app"
+    build: ./app/main
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+      - database
+    links:
+      - backend
+
+volumes:
+  mysqldata:
+    name: mysqldata
+  # sslverifier:
+
+
