@@ -11,8 +11,11 @@ pipeline {
     }
     stages{
         stage('git repo & clean'){
-            sh "rmdir /s /q platzi-devops"
-            sh "git clone https://github.com/Marvin25ronal/platzi-devops.git"
+            steps{
+                sh "rmdir /s /q platzi-devops"
+                sh "git clone https://github.com/Marvin25ronal/platzi-devops.git"
+            }
+           
         }
         stage('Install dependencias'){
             steps{
