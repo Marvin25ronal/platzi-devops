@@ -15,7 +15,20 @@ pipeline {
                 sh 'npm install'
                 sh 'cd app && npm install'
             }
-           
         }
+        stage('Build'){
+            steps{
+                script{
+                    dir('app'){
+                        dockerImage=docker.build "${env.ARTIFACT_ID}"
+                    }
+                }
+            }
+        }
+        // stage('Publish'){
+        //     when{
+        //         branch 'master'
+        //     }
+        // }
     }
 }
