@@ -13,7 +13,6 @@ pipeline {
         stage('git repo & clean'){
             bat "rmdir /s /q platzi-devops"
             bat "git clone https://github.com/Marvin25ronal/platzi-devops.git"
-            bat "mvn clean -f platzi-devops"
         }
         stage('Install dependencias'){
             steps{
