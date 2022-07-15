@@ -4,7 +4,7 @@ pipeline {
         nodejs 'nodejs'
     }
     options {
-        timeout(time: 2, unit:'MINUTES')
+        timeout(time: 5, unit:'MINUTES')
     }
     environment {
         ARTIFACT_ID="marvin25/devops:${env.BUILD_NUMBER}"
