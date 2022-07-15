@@ -19,8 +19,9 @@ pipeline {
         }
         stage('Install dependencias'){
             steps{
+                sh 'cd platzi-devops && npm install'
                 sh 'npm install'
-                sh 'cd app && npm install'
+                sh 'cd platzi-devops/app && npm install'
             }
         }
         stage('Build'){
