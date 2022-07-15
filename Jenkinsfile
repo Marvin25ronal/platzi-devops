@@ -19,15 +19,14 @@ pipeline {
         }
         stage('Install dependencias'){
             steps{
-                sh 'cd platzi-devops && npm install'
                 sh 'npm install'
-                sh 'cd platzi-devops/app && npm install'
+                sh 'cd app/main && npm install'
             }
         }
         stage('Build'){
             steps{
                 script{
-                    dir('platzi-devops/app'){
+                    dir('app/main'){
                         dockerImage=docker.build "${env.ARTIFACT_ID}"
                     }
                 }
