@@ -13,6 +13,7 @@ pipeline {
         stage('Install dependencias'){
             steps{
                 sh 'npm install'
+                sh 'cd app && npm install'
             }
            
         }
