@@ -12,7 +12,7 @@ pipeline {
     stages{
         stage('git repo & clean'){
             steps{
-                sh "rmdir /s /q platzi-devops"
+                sh "rm -rf platzi-devops"
                 sh "git clone https://github.com/Marvin25ronal/platzi-devops.git"
             }
            
