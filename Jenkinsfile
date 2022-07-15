@@ -27,7 +27,7 @@ pipeline {
         stage('Build'){
             steps{
                 script{
-                    dir('app'){
+                    dir('platzi-devops/app'){
                         dockerImage=docker.build "${env.ARTIFACT_ID}"
                     }
                 }
